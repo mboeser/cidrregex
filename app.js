@@ -8,7 +8,7 @@ const isCidr = require("is-cidr");
 const toRegexRange = require("to-regex-range");
 const morgan = require("morgan");
 
-app.use(morgan("dev"));
+//app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
