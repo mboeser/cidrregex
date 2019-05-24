@@ -1,0 +1,22 @@
+{
+  "name": "cidr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon -e js,html app.js"
+  },
+  "author": "Mike Boeser <mboeser@yahoo.com> (https://github.com/mboeser)",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.16.4",
+    "is-cidr": "^3.0.0",
+    "netmask": "^1.0.6",
+    "to-regex-range": "^5.0.1"
+  },
+  "devDependencies": {
+    "morgan": "^1.9.1"
+  }
+}

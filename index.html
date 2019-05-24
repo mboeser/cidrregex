@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="utf-8">
+  <title>CIDR REGEX</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/css/style.css">
+<style>
+.btn {
+	background-color: #49A3F1;
+	border: 1px solid #49A3F1;
+}
+.btn:hover,
+.btn:active,
+.btn:focus {
+	background-color: #378DD6;
+	border: 1px solid #378DD6;
+}
+.social-links li a:hover {
+	background:#49A3F1;
+	border-color: #49A3F1;
+}
+.myform .form-control:focus,
+.myform textarea.inputError:focus,
+.input-group .form-control:focus {
+	border: 2px solid #49A3F1;
+}
+</style>
+
+</head>
+
+<body id="home">
+
+  <div id="header">
+  <div class="header-content">
+    <div class="countdown" id="countdown">
+      <div class="container">
+          <div class="row">
+          <div class="countdown-item col-sm-3 col-xs-3">
+            <!-- <div class="countdown-number" id="countdown-days">440</div>
+            <div class="countdown-label">days</div> -->
+          </div>
+
+          <div class="countdown-item col-sm-3 col-xs-3">
+            <!-- <div class="countdown-number" id="countdown-hours">04</div>
+            <div class="countdown-label">hours</div> -->
+          </div>
+
+          <div class="countdown-item col-sm-3 col-xs-3">
+            <!-- <div class="countdown-number" id="countdown-minutes">51</div>
+            <div class="countdown-label">minutes</div> -->
+          </div>
+
+          <div class="countdown-item col-sm-3 col-xs-3">
+            <!-- <div class="countdown-number" id="countdown-seconds">44</div>
+            <div class="countdown-label">seconds</div> -->
+          </div>
+        </div>
+      <div class="row">
+        <form id="cidr-form" action="/" class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 myform" novalidate>
+          <div class="input-group">
+            <input id="cidr" name="cidr" placeholder="Ex: 198.168.0.1/24" class="form-control input-lg requiredField" type="text" data-error-empty="Please enter your email" data-error-invalid="Invalid email address">
+            <span class="input-group-btn">
+              <button name="submit" type="submit" class="btn" data-error-message="Error!" data-sending-message="Sending..." data-ok-message="Message Sent">Submit</button>
+            </span>
+          </div>
+        </form>
+        <div id="result"></div>
+      </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div>
+          <ul class="social-links text-center">
+            <li><a href="#link"><i class="icon-twitter"></i></a></li>
+            <li><a href="#link"><i class="icon-facebook"></i></a></li>
+            <li><a href="#link"><i class="icon-googleplus"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <p class="text-center copyright">&copy; 2019. Designed by <a href="#" target="_blank">MKB</a>.<br>
+      </p>
+    </footer>
+  </div>
+  </div>
+
+  <script>
+    // Attach a submit handler to the form
+    $( "#cidr-form" ).submit(function( event ) {
+
+      // Stop form from submitting normally
+      event.preventDefault();
+
+      // Get some values from elements on the page:
+      var $form = $( this ),
+        term = $form.find( "input[name='cidr']" ).val(),
+        url = $form.attr( "action" );
+
+      // Send the data using post
+      var posting = $.post( url, { cidr: term } );
+      //reset form
+      $("form")[0].reset();
+
+      // Put the results in a div
+      posting.done(function( data ) {
+        console.log(data)
+        //var content = $( data );
+        $( "#result" ).empty().append( data );
+        $('form').hide();
+        $( "#result" ).append( '<button id=back>BACK</button>' );
+
+        $('#back').click(function(){
+          $( "#result" ).empty()
+      $('#back').hide();
+      $('form').show();
+    })
+      });
+    });
+
+
+
+    </script
+
+</body>
+
+</html>
