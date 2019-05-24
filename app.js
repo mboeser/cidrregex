@@ -6,7 +6,7 @@ const port = process.env.PORT || 3000;
 
 const isCidr = require("is-cidr");
 const toRegexRange = require("to-regex-range");
-const morgan = require("morgan");
+//const morgan = require("morgan");
 
 //app.use(morgan("dev"));
 app.use(bodyParser.json());
