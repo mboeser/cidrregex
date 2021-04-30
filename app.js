@@ -8,10 +8,10 @@ const port = process.env.PORT || 3000;
 
 const isCidr = require("is-cidr");
 const toRegexRange = require("to-regex-range");
-//const morgan = require("morgan");
+const morgan = require("morgan");
 
-//app.use(morgan("dev"));
-//app.use(cors());
+app.use(morgan("dev"));
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -25,9 +25,9 @@ app.post("/", (req, res) => {
   if (isCidr.v4(req.body.cidr)) {
     const Netmask = require("netmask").Netmask;
     const block = new Netmask(req.body.cidr);
-
+    console.log(block);
     const ipStart = block.base.split(".");
-    const ipEnd = block.broadcast.split(".");
+    const ipEnd = block.size > 2 ? block.broadcast.split(".") : block.last.split(".") ;
 
     const ipArray = [ipStart, ipEnd];
 
